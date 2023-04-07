@@ -24,14 +24,14 @@ import { MyContractsComponent } from './pages/my-contracts/my-contracts.componen
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatTabsModule} from '@angular/material/tabs';
-import { MatInputModule } from '@angular/material/input';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatLegacyTabsModule as MatTabsModule} from '@angular/material/legacy-tabs';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
 
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -49,7 +49,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthService } from "./shared/service/auth.service";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { MatCheckboxModule}  from '@angular/material/checkbox';
+import { MatLegacyCheckboxModule as MatCheckboxModule}  from '@angular/material/legacy-checkbox';
 import { TestformComponent } from './tests/testform/testform.component';
 import { ShortFormComponent } from './forms/short-form/short-form.component';
 import { NotificationComponent } from './pages/settings/notification/notification.component';
