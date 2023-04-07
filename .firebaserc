@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "contract-machine": {
+      "hosting": {
+        "contract-machine": [
+          "contract-machine"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "contract-machine"
+  }
+}

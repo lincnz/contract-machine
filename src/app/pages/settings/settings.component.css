@@ -1,0 +1,20 @@
+.grey {
+    background-color: #f1f1f1;
+    padding: 1em;
+}
+
+.center {
+    margin: auto;
+}
+
+.nav-link {
+    color: black;
+    transition: opacity .3s ease-out;
+    -moz-transition: opacity .3s ease-out;
+    -webkit-transition: opacity .3s ease-out;
+    -o-transition: opacity .3s ease-out;
+  }
+  
+.active {
+  background-color: rgb( 0, 0, 0, 0.3);
+}

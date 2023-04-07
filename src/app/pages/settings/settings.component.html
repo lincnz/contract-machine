@@ -1,0 +1,47 @@
+<!-- TODO: add options for notifications - SMS, email, other -->
+<!-- TODO: implement twilio -->
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active">
+              Notifications
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              Account
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Notification settings</h1>
+        </div>
+        <mat-card>
+          <div class="row">
+            <mat-checkbox matInput >Send me a reminder email at 8:30am on settlement days.</mat-checkbox>
+            <br>
+            <mat-form-field >
+              <mat-label>Email address for notifications:</mat-label>
+              <input matInput cdkFocusInitial >
+            </mat-form-field>
+            
+            <!-- <app-notification></app-notification> -->
+          </div>
+          <button mat-button> <mat-icon >notifications</mat-icon> Add Notification</button>
+        </mat-card>
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+    

@@ -1,0 +1,43 @@
+<div class="general-view-page">
+  <div class="settlements">
+    <div class="thisweek">
+      <h2>Settlements this week:</h2>
+      <div class="contract-cards">
+        <app-task *ngFor="let contract of mycontractsByWeek | async" [contract]="contract" [settView]="true"></app-task>
+        <p class="empty-label" *ngIf="((mycontractsByWeek | async)?.length === 0)">No settlements this week</p>
+      </div>
+    </div>
+    
+    <div class="thismonth">
+      <h2>Settlements this month:</h2>
+      <div class="contract-cards">
+        <app-task *ngFor="let contract of mycontractsByMonth | async" [contract]="contract" [compactView]="true"></app-task>
+        <p class="empty-label" *ngIf="((mycontractsByMonth | async)?.length === 0)">No settlements this month</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="conditions">
+    <div class="thisweek">
+      <h2>Conditions this week:</h2>    
+      <div class="contract-cards">
+        <!-- <app-task *ngFor="let contract of mycontractsByWeek | async" [contract]="contract" [settView]="true"></app-task> -->
+        <p class="empty-label">No conditions this week</p>
+      </div>
+    </div>
+    
+    <div class="thismonth">
+      <h2>Conditions this month:</h2>
+      <div class="contract-cards">
+        <!-- <app-task *ngFor="let contract of mycontractsByMonth | async" [contract]="contract" [compactView]="true"></app-task> -->
+        <p class="empty-label">No conditions this month</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button mat-button (click)="isThisWeek(mycontracts, mycontractsByWeek)">Click to test a function</button>
+  
+  
+  

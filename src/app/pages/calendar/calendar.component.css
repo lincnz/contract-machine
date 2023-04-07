@@ -1,0 +1,8 @@
+.demo-inline-calendar-card {
+    width: 500px;
+    margin: auto;
+  }
+
+.highlight-date {
+  background-color: red;
+}

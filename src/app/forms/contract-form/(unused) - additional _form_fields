@@ -1,0 +1,204 @@
+      <mat-tab label="PPSA and GST">
+        <div class="linked-fields">
+            <h3>PPSA and GST registration:</h3>
+            <mat-checkbox matInput [(ngModel)]="data.contract.vendGSTreg">Vendor is registered for GST</mat-checkbox>
+            <mat-checkbox matInput [(ngModel)]="data.contract.ppaRelevantVend">PPA is relevant for Vendor</mat-checkbox>
+            <mat-checkbox matInput [(ngModel)]="data.contract.ppaRelevantPurch">PPA is relevant for Purchaser</mat-checkbox>
+          </div>    
+      </mat-tab>
+      <mat-tab label="Property">
+        <div class="linked-fields">
+            <h3>Property Details:</h3>
+    
+            <!-- address -->
+            <mat-form-field>
+              <mat-label>Property Address:</mat-label>
+              <input matInput [(ngModel)]="data.contract.address">
+            </mat-form-field>
+    
+            <!-- estate type TODO: change to dropdown--> 
+            <mat-form-field>
+              <mat-label>Estate type:</mat-label>
+              <input matInput [(ngModel)]="data.contract.estate">
+            </mat-form-field>
+    
+            <!-- property description -->
+            <mat-form-field>
+              <mat-label>Property description</mat-label>
+              <input matInput [(ngModel)]="data.contract.description">
+            </mat-form-field>
+      
+            <!-- lot, flat or unit -->
+            <mat-form-field>
+              <mat-label>Lot, flat or unit: </mat-label>
+              <input matInput [(ngModel)]="data.contract.lotFlatUnit">
+            </mat-form-field>
+    
+            <!-- DP reference -->
+            <mat-form-field>
+              <mat-label>DP reference: </mat-label>
+              <input matInput [(ngModel)]="data.contract.DPref">
+            </mat-form-field>
+    
+            <!-- registered title -->
+            <mat-form-field>
+              <mat-label>Registered title: </mat-label>
+              <input matInput [(ngModel)]="data.contract.regTitle">
+            </mat-form-field>
+      
+            <!-- property area -->
+            <mat-form-field>
+              <mat-label>Area: </mat-label>
+              <input matInput [(ngModel)]="data.contract.area">
+            </mat-form-field>
+          </div>
+    
+      </mat-tab>
+      <mat-tab label="Price">
+        <div class="linked-fields">
+            <h3>Price Details:</h3>
+    
+            <!-- purchase price -->
+            <mat-form-field>
+              <mat-label>Purchase Price: </mat-label>
+              <input matInput [(ngModel)]="data.contract.purchasePrice" placeholder="0" type="number">
+              <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+    
+            <!-- plus gst -->
+            <mat-checkbox matInput [(ngModel)]="data.contract.plusGST">plus GST</mat-checkbox>
+    
+            <!-- deposit -->
+            <mat-form-field>
+              <mat-label>Deposit: </mat-label>
+              <input matInput [(ngModel)]="data.contract.deposit" placeholder="0" type="number">
+              <span matPrefix>$&nbsp;</span>
+            </mat-form-field>
+      
+
+    
+          </div>
+    
+      </mat-tab>
+      <mat-tab label="Standard conditions">
+        <div class="linked-fields">
+            <h3>Standard conditions:</h3>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.conditional">Contract is conditional</mat-checkbox>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.kiwisaverRequired">Kiwisaver withdrawal required</mat-checkbox>
+            <!-- kiwsaver date -->
+            <div *ngIf="(data.contract.kiwisaverRequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>Kiwisaver Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="ksaverDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.ksaver" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="ksaverDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #ksaverDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.financeRequired">Finance required</mat-checkbox>
+            <!-- finance date -->
+            <div *ngIf="(data.contract.financeRequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>Finance Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="financeDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.finance" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="financeDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #financeDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.limRequired">LIM report required</mat-checkbox>
+            <!-- LIM date -->
+            <div *ngIf="(data.contract.limRequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>LIM Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="limDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.limreport" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="limDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #limDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.brrequired">Building report required</mat-checkbox>
+            <!-- Building Report date -->
+            <div *ngIf="(data.contract.brrequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>Building Report Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="brDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.buildingreport" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="brDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #brDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.toxrequired">Toxicology report required</mat-checkbox>
+            <!-- Toxicology Report date -->
+            <div *ngIf="(data.contract.toxrequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>Toxicology Report Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="toxDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.toxreport" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="toxDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #toxDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.OIArequired">OIA consent required</mat-checkbox>
+            <!-- OIA date -->
+            <div *ngIf="(data.contract.OIArequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>OIA Approval Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="oiaDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.oiaappr" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="oiaDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #oiaDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+            <mat-checkbox matInput [(ngModel)]="data.contract.landActRequired">Land Act consent required</mat-checkbox>
+            <!-- Land Act date -->
+            <div *ngIf="(data.contract.landActRequired)">
+              <mat-form-field appearance="fill">
+                <mat-label>OIA Approval Date</mat-label>
+                <input matInput 
+                  [matDatepicker]="landActDatePicker" 
+                  [(ngModel)]="data.contract.stdConditionDates!.landAct" 
+                >
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="landActDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #landActDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+    
+          </div>
+    
+      </mat-tab>
+      <mat-tab label="Other conditions">
+        <div class="linked-fields">
+            <h3>Other conditions:</h3>   
+        </div> 
+      </mat-tab>
+      <mat-tab label="Tenants">
+        <h3>Tenancy details:</h3>
+      </mat-tab>

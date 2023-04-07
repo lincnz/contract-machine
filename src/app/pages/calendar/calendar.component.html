@@ -1,0 +1,14 @@
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [selected]="selected" ></mat-calendar>
+</mat-card>
+
+<button (click)="testFunc()">Test Func</button>
+
+<p>Selected date: {{selected}}</p>
+
+<!-- <app-task *ngFor="let contract of settlements | async" [contract]="contract" ></app-task>
+
+<ul  *ngFor="let contract of settlements | async" >
+    <li *ngIf="(contract.settlementDate)" >{{ contract.settlementDate.seconds * 1000 | date:'mediumDate' }}</li>
+<ul> -->

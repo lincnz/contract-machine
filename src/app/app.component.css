@@ -1,0 +1,112 @@
+/* Primary: #0D445E */
+/* Primary accent: #165A7A */
+/* White: #DEE2E6 */
+/* White accent: #f1f1f1 */
+/* Button:  #5494b1; */
+
+mat-toolbar > span {
+  margin-left: 1em;
+}
+  
+mat-toolbar {
+  justify-content: space-between;
+  height: auto;
+  /* background-color: #0D445E; */
+}
+  
+.example-action-button {
+  margin-top: 8px;
+  margin-right: 8px;
+}
+  
+.app-title {
+  padding-left: 1em;
+}
+  
+.login-card {
+  width: 20em;
+  height: 35em;
+  padding: 2em;
+}
+  
+.user-info-brief {
+  overflow: hidden;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  padding: 0.2em;
+}
+  
+.brief-thumbnail {
+  height: 3em;
+  padding:0.02em;
+}
+  
+  .content-wrapper {
+    width: 95%;
+    margin: auto;
+    padding: 1em;
+  }
+    
+  .current-tab {
+    margin: auto;
+    /* border: 1px solid #dee2e6; */
+    border-top: 0;
+    padding: 2em;
+  }
+  
+  .mat-icon {
+    height: 1em;
+  }
+  
+  .mat-button {
+    line-height: 1em;
+    font-size: 1em;
+    padding: 0.4em 0.8em;
+  }
+  
+  .container {
+    width: 400px;
+    margin: 0 25px 25px 0;
+  }
+  
+  .list {
+    border: solid 1px #f1f1f1;
+    min-height: 60px;
+    border-radius: 4px;
+  }
+  
+  app-new-task {
+    margin-bottom: 30px;
+  }
+  
+  .empty-label {
+    font-size: 2em;
+    padding-top: 10px;
+    text-align: center;
+    opacity: 0.2;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms;
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .nav-link {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity .3s ease-out;
+      -moz-transition: opacity .3s ease-out;
+      -webkit-transition: opacity .3s ease-out;
+      -o-transition: opacity .3s ease-out;
+  }
+  
+  .nav-link:hover {
+      text-decoration: none;
+      color: inherit;
+      opacity: 0.5;
+  }

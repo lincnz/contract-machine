@@ -1,0 +1,30 @@
+.thisweek {
+  background-color: rgb(239, 239, 239);
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.thismonth {
+  background-color: rgb(239, 239, 239);
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+.conditions {
+  width: 50%;
+}
+
+.settlements {
+  width: 50%;
+}
+
+.contract-cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+}
+
+.general-view-page {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,78 @@
+<!-- TODO: collapse this into key dates only.  -->
+
+<mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Details">
+      <div class="linked-fields">
+        <!-- title -->
+        <mat-form-field class="agreement-name">
+          <mat-label>Agreement Name:</mat-label>
+          <input matInput cdkFocusInitial [(ngModel)]="data.contract.title">
+        </mat-form-field>
+
+        <!-- clientref -->
+        <mat-form-field class="agreement-name">
+          <mat-label>Client Reference:</mat-label>
+          <input matInput cdkFocusInitial [(ngModel)]="data.contract.clientref">
+        </mat-form-field>
+
+        <!-- startDate -->
+        <mat-form-field appearance="fill">
+          <mat-label>Date of Agreement</mat-label>
+          <input matInput 
+            [matDatepicker]="startDatePicker" 
+            [(ngModel)]="data.contract.startDate"
+          >
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- settlement date -->
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Settlement Date</mat-label>
+            <input matInput 
+              [matDatepicker]="settlementDatePicker" 
+              [(ngModel)]="data.contract.settlementDate" 
+            >
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="settlementDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #settlementDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      
+        <!-- vendor -->
+        <mat-form-field>
+          <mat-label>Vendor: </mat-label>
+          <input matInput [(ngModel)]="data.contract.vendor">
+        </mat-form-field>
+  
+        <!-- purchaser -->
+        <mat-form-field>
+          <mat-label>Purchaser: </mat-label>
+          <input matInput [(ngModel)]="data.contract.purchaser">
+        </mat-form-field>
+      </div>
+    </mat-tab>
+    <mat-tab label="Conditions">
+
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+
+<div class="form-container">
+</div>  
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="{ contract: data.contract }">OK</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button
+    *ngIf="data.enableDelete"
+    mat-fab
+    color="primary"
+    aria-label="Delete"
+    [mat-dialog-close]="{ contract: data.contract, delete: true }">
+    <mat-icon>delete</mat-icon>
+  </button>  
+</mat-dialog-actions>

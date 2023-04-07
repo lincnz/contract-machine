@@ -1,0 +1,35 @@
+<div class="container ">
+  <div class="d-table center">
+    <div class="d-table-cell grey">
+      <div class="auth-block form-flex">
+        <h3>Sign In</h3>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Username" #userName required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+        </div>
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+        </div>
+        <div class="form-group">
+          <span class="or"><span class="or-inner">Or</span></span>
+        </div>
+        <!-- Calling GoogleAuth Api from AuthService -->
+        <div class="form-group">
+          <button type="button" class="btn btn-outline-danger" (click)="authService.GoogleAuth()">
+            <i class="bi bi-google"> </i>
+            Log in with Google
+          </button>
+        </div>
+        <div class="forgot-password">
+          <a routerLink="/forgot-password">Forgot Password?</a>
+        </div>
+      </div>
+      <div class="redirect-to-login">
+        <span>Don't have an account?<a class="redirect" routerLink="/register-user"> Sign Up</a></span>
+      </div>
+    </div>  
+  </div>
+</div>

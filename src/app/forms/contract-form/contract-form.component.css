@@ -1,0 +1,21 @@
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 100%;
+}
+
+.linked-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em; 
+  border: 0.03em solid rgb(189, 189, 189);
+  border-radius: 0.5em;
+}
+
+.agreement-name {
+  width: 20em;;
+}
+  

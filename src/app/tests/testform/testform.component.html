@@ -1,0 +1,5 @@
+<mat-form-field>
+  <mat-label>String input:</mat-label>
+  <input matInput [(ngModel)]="data.stringTest">
+</mat-form-field>
+<button mat-button [mat-dialog-close]="{ stringTest: data.stringTest }">OK</button>
