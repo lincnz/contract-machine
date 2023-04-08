@@ -24,14 +24,15 @@ import { MyContractsComponent } from './pages/my-contracts/my-contracts.componen
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
-import { MatLegacyTabsModule as MatTabsModule} from '@angular/material/legacy-tabs';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatCardModule as MatCardModule } from '@angular/material/card';
+import { MatButtonModule as MatButtonModule } from '@angular/material/button';
+import { MatDialogModule as MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule as MatTabsModule} from '@angular/material/tabs';
+import { MatInputModule as MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule as MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCheckboxModule as MatCheckboxModule}  from '@angular/material/checkbox';
 
 import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
@@ -49,13 +50,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthService } from "./shared/service/auth.service";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { MatLegacyCheckboxModule as MatCheckboxModule}  from '@angular/material/legacy-checkbox';
 import { TestformComponent } from './tests/testform/testform.component';
 import { ShortFormComponent } from './forms/short-form/short-form.component';
 import { NotificationComponent } from './pages/settings/notification/notification.component';
 import { ConditionComponent } from './shared/component/condition/condition.component';
 import { SearchBarComponent } from './pages/my-contracts/search-bar/search-bar.component';
-import { AngCalendarComponent } from './ang-calendar/ang-calendar.component';
 
 
 @NgModule({
@@ -79,7 +78,6 @@ import { AngCalendarComponent } from './ang-calendar/ang-calendar.component';
     NotificationComponent,
     ConditionComponent,
     SearchBarComponent,
-    AngCalendarComponent,
     
   ],
   imports: [
