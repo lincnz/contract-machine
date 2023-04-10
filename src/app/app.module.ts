@@ -55,6 +55,15 @@ import { ShortFormComponent } from './forms/short-form/short-form.component';
 import { NotificationComponent } from './pages/settings/notification/notification.component';
 import { ConditionComponent } from './shared/component/condition/condition.component';
 import { SearchBarComponent } from './pages/my-contracts/search-bar/search-bar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { CalendarCommonModule } from 'angular-calendar';
+import { CalendarMonthModule } from 'angular-calendar';
+
+
 
 
 @NgModule({
@@ -77,8 +86,7 @@ import { SearchBarComponent } from './pages/my-contracts/search-bar/search-bar.c
     ShortFormComponent,
     NotificationComponent,
     ConditionComponent,
-    SearchBarComponent,
-    
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +114,18 @@ import { SearchBarComponent } from './pages/my-contracts/search-bar/search-bar.c
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgbModule,
+    NgbModalModule,
+    FlatpickrModule,
+    CalendarModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CalendarCommonModule,
+    CalendarMonthModule
   ],
   providers: [
     ScreenTrackingService,
@@ -115,6 +134,6 @@ import { SearchBarComponent } from './pages/my-contracts/search-bar/search-bar.c
     CurrencyPipe, 
     { provide: LOCALE_ID, useValue: 'en-nz' }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

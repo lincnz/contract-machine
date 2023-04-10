@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCalendar } from '@angular/material/datepicker';
-import { MatCard } from '@angular/material/card';
-import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Contract } from '../../shared/component/contract/contract';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Timestamp } from '@angular/fire/firestore';
 
 const getSettlements = (collection: AngularFirestoreCollection<Contract>) => {
   const subject = new BehaviorSubject<Contract[]>([]);

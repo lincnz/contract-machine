@@ -1,5 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MAT_DIALOG_DATA as MAT_DIALOG_DATA, MatDialogRef as MatDialogRef } from '@angular/material/dialog';
 import { Contract } from '../../shared/component/contract/contract';
 import { Router } from '@angular/router';
 
@@ -58,6 +58,7 @@ export class ContractFormComponent {
   }
 
   cancel(): void {
+    /* TODO: remove irrelevant */
     this.data.contract.title = this.backupTask.title;
     this.data.contract.description = this.backupTask.description;
     this.data.contract.startDate = this.backupTask.startDate;
@@ -70,7 +71,6 @@ export class ContractFormComponent {
 
     //test
     //this.data.contract.stdConditionDates.ksaver = this.backupTask.stdConditionDates.ksaver;
-
 
     this.dialogRef.close(this.data);
   }

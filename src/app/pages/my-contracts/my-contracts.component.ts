@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contract } from '../../shared/component/contract/contract';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ContractFormComponent, ContractFormResult} from '../../forms//contract-form/contract-form.component';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
