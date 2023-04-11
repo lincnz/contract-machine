@@ -59,15 +59,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void { 
   }
 
-  //highlight-date - doesnt' work
-  // dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
-  //     const date = cellDate.getDate();
-  //     if (view == 'month') {
-  //       return (date == 1) ? 'highlight-date' : "";
-  //   }
-  //   return "";
-  // }
-
 }
 
 

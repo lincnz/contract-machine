@@ -11,7 +11,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from "@angular/router"
 import { TestformComponent, TestFormResult } from 'src/app/tests/testform/testform.component';
 
-
 const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
   const subject = new BehaviorSubject<Contract[]>([]);
   collection.valueChanges({ idField: 'id' }).subscribe((val: Contract[]) => {
@@ -19,7 +18,6 @@ const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
   });
   return subject;
 };
-
 
 // tests
 const getTest = (collection: AngularFirestoreCollection<Object>) => {
@@ -44,10 +42,6 @@ const getTestSimple = (document: AngularFirestoreDocument) => {
 })
 export class MyContractsComponent {
   
-  //mycontracts:any = [];
-  //myothercontracts:any = [];
-
-
   constructor(
     private dialog: MatDialog, 
     private store: AngularFirestore,
@@ -69,7 +63,6 @@ export class MyContractsComponent {
   }
 
   userData: any;
-  //userFolder: any
 
   userStatus = this.afAuth.authState.subscribe(res => {
     if (res && res.uid) {
@@ -79,7 +72,6 @@ export class MyContractsComponent {
       return false
     }
   });
-
 
   userFolder = `users/${this.authService.userData.uid}/`
   mycontracts = getObservable(this.store.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;

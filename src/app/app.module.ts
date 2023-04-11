@@ -62,6 +62,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { CalendarCommonModule } from 'angular-calendar';
 import { CalendarMonthModule } from 'angular-calendar';
+import { TestCalendarComponent } from './test-calendar/test-calendar.component';
+import { CalendarHeaderComponent } from './demo-utils/calendar-header.component';
 
 
 
@@ -86,7 +88,9 @@ import { CalendarMonthModule } from 'angular-calendar';
     ShortFormComponent,
     NotificationComponent,
     ConditionComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    TestCalendarComponent,
+    CalendarHeaderComponent
   ],
   imports: [
     BrowserModule,

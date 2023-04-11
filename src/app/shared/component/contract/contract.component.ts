@@ -1,8 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Contract } from './contract';
 
-
-
 @Component({
   selector: 'app-task',
   templateUrl: './contract.component.html',

@@ -5,10 +5,6 @@ import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { User } from '../../shared/service/user';
-import { Router } from "@angular/router"
-
-
 
 const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
   const subject = new BehaviorSubject<Contract[]>(new Array);
@@ -69,15 +65,8 @@ const getObservableByMonth = (collection: AngularFirestoreCollection<Contract>) 
 })
 export class GeneralViewComponent implements OnInit {
 
-  // userFolder: any;
-  // mycontracts: any;
-  // mycontractsByWeek: any;
-  // mycontractsByMonth: any;  
-
-
   constructor(
     private angularfirestore: AngularFirestore,
-    private router: Router,
     public authService: AuthService,
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -96,7 +85,7 @@ export class GeneralViewComponent implements OnInit {
     });
   }
   
-  isThisWeek(mycontracts: Observable<Contract[]>, mycontractsByDate: Observable<Contract[]>, ): void {
+  testFunction(): void {
     console.log('function ran');
   }
 
@@ -107,17 +96,6 @@ export class GeneralViewComponent implements OnInit {
   mycontractsByMonth = getObservableByMonth(this.angularfirestore.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;
   mycontractsByWeek = getObservableByWeek(this.angularfirestore.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;
   
-
-
-  // getDisplayContracts = this.afAuth.authState.subscribe(res => {
-  //   if (res && res.uid) {
-  //     console.log('getting contracts...');
-
-  //   } else {
-  //     this.router.navigate(['/sign-in'])
-  //   }
-  // });
-
   ngOnInit(): void {
 
   }
