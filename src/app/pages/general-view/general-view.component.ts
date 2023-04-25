@@ -72,7 +72,6 @@ export class GeneralViewComponent implements OnInit {
     public afAuth: AngularFireAuth,
   ) { 
 
-    console.log('constructor');
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         console.log('getting user...')

@@ -19,29 +19,12 @@ const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
   return subject;
 };
 
-// tests
-const getTest = (collection: AngularFirestoreCollection<Object>) => {
-  const subject = new BehaviorSubject<Object[]>([]);
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Object[]) => {
-    subject.next(val)
-  })
-  console.log(subject);
-  return subject;
-}
-
-const getTestSimple = (document: AngularFirestoreDocument) => {
-  console.log('tick')
-  return document;
-} 
-//endtests
-
 @Component({
   selector: 'app-task-view',
   templateUrl: './my-contracts.component.html',
   styleUrls: ['./my-contracts.component.css']
 })
 export class MyContractsComponent {
-  
   constructor(
     private dialog: MatDialog, 
     private store: AngularFirestore,
@@ -63,7 +46,6 @@ export class MyContractsComponent {
   }
 
   userData: any;
-
   userStatus = this.afAuth.authState.subscribe(res => {
     if (res && res.uid) {
       return true

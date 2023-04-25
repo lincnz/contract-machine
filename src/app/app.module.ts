@@ -64,9 +64,7 @@ import { CalendarCommonModule } from 'angular-calendar';
 import { CalendarMonthModule } from 'angular-calendar';
 import { TestCalendarComponent } from './test-calendar/test-calendar.component';
 import { CalendarHeaderComponent } from './demo-utils/calendar-header.component';
-
-
-
+import { ConditionFormComponent } from './forms/condition-form/condition-form.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +88,8 @@ import { CalendarHeaderComponent } from './demo-utils/calendar-header.component'
     ConditionComponent,
     SearchBarComponent,
     TestCalendarComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    ConditionFormComponent,
   ],
   imports: [
     BrowserModule,

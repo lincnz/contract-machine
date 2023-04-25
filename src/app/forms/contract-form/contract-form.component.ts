@@ -1,7 +1,10 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, ViewContainerRef } from '@angular/core';
+import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA as MAT_DIALOG_DATA, MatDialogRef as MatDialogRef } from '@angular/material/dialog';
 import { Contract } from '../../shared/component/contract/contract';
 import { Router } from '@angular/router';
+import { ConditionFormComponent } from '../condition-form/condition-form.component';
+import { Condition } from 'src/app/shared/component/condition/condition'
 
 @Component({
   selector: 'app-task-dialog',
@@ -15,15 +18,17 @@ export class ContractFormComponent {
 
   //makes a backup the same as this.data.contract. The '...' copies the properties from that contract
   private backupTask: Partial<Contract> = { ...this.data.contract };
-
   contractFormPages: any[];
   activePageIndex = 0; 
 
   constructor(
     public dialogRef: MatDialogRef<ContractFormComponent>,
+    private dialog: MatDialog,
+    private viewContainerRef: ViewContainerRef,
     @Inject(MAT_DIALOG_DATA) public data: ContractFormData,
     private router: Router
   ) {
+    // wizard not currently used
     this.contractFormPages = [
       {
           label: 'Main Details',
@@ -65,14 +70,38 @@ export class ContractFormComponent {
     this.data.contract.settlementDate = this.backupTask.settlementDate;
     this.data.contract.color = this.backupTask.color;
     this.data.contract.timeZoneOffset = this.backupTask.timeZoneOffset;
-    this.data.contract.purchasePrice = this.backupTask.purchasePrice;
-    this.data.contract.deposit = this.backupTask.deposit;
-    this.data.contract.plusGST = this.backupTask.plusGST;
 
     //test
     //this.data.contract.stdConditionDates.ksaver = this.backupTask.stdConditionDates.ksaver;
 
     this.dialogRef.close(this.data);
+  }
+
+  newCondition(): void {
+    console.log("New condition added");
+    const conditionBox = this.viewContainerRef.createComponent(ConditionFormComponent)
+    //need 2-way binding adding data from the condition component to the contract-form data, when contract form is closed, 
+    //data is treated as any other. This can probably be done with injections
+    //https://angular.io/guide/component-interaction
+    //https://angular.io/api/core/ViewContainerRef
+
+
+
+
+
+    // const dialogRef = this.dialog.open(ConditionFormComponent, {
+    //   width: '100%',
+    //   data: {
+    //     condition: {
+    //     },
+    //   },
+    // });
+    // dialogRef.afterClosed().subscribe((result: ConditionFormComponent) => {
+    //     if (!result) {
+    //       return;
+    //     }
+    //     this.store.collection(this.userFolder + 'mycontracts').add(result.condition)
+    // });
   }
 }
 

@@ -25,3 +25,16 @@
   >
   </mwl-calendar-day-view>
 </div>
+
+<!-- some observable tests - this successfully displays contracts - learning point of, and manipulation of "BehaviourSubject"-->
+<mat-card
+  id="otherMethod">
+  <p class="empty-label" *ngIf="(myContractsArray | async)?.length === 0">Empty list</p>
+  <app-task *ngFor="let contract of myContractsArray | async"  [contract]="contract" [compactView]="true"></app-task>
+</mat-card>
+
+<!-- displaying a picked contract -->
+<mat-card
+  id="otherMethod">
+  <!-- <app-task [contract]="pickContractTest" [compactView]="true"></app-task> -->
+</mat-card>

@@ -1,14 +1,21 @@
 import { Timestamp } from "@angular/fire/firestore";
+import { Condition } from "src/app/shared/component/condition/condition"
 
 export interface Contract {
     id: string;
     title: string;
     color: string;
     timeZoneOffset: number;
+    clientName: string;
     clientref: string;
-
     startDate?: Timestamp;
+    settlementDate?: Timestamp;
+    conditions: {
+      [key: string]: Condition
+    };
 
+
+    // everything below not currently used
     vendor: string;
     purchaser: string;
     andNominee: boolean;
@@ -31,7 +38,6 @@ export interface Contract {
     plusGST: boolean;
     deposit: number;
     GSTdate: Timestamp;
-    settlementDate?: Timestamp;
 
     conditional: boolean;
     financeRequired: boolean;

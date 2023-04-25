@@ -41,7 +41,7 @@
             <mat-datepicker #settlementDatePicker></mat-datepicker>
           </mat-form-field>
         </div>
-      
+
         <!-- vendor -->
         <mat-form-field>
           <mat-label>Vendor: </mat-label>
@@ -53,6 +53,12 @@
           <mat-label>Purchaser: </mat-label>
           <input matInput [(ngModel)]="data.contract.purchaser">
         </mat-form-field>
+
+        <!-- Conditions -->
+        <button (click)="newCondition()" mat-button>
+          <mat-icon>add</mat-icon>
+        </button> 
+        
       </div>
     </mat-tab>
     <mat-tab label="Conditions">
