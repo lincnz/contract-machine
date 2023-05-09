@@ -1,19 +1,16 @@
 import { Timestamp } from "@angular/fire/firestore";
-import { Condition } from "src/app/shared/component/condition/condition"
+import { ConditionChip } from "src/app/forms/contract-form/condition-chips/condition-chips.component";
 
 export interface Contract {
     id: string;
     title: string;
     color: string;
     timeZoneOffset: number;
-    clientName: string;
-    clientref: string;
+    clientName?: string;
+    clientref?: string;
     startDate?: Timestamp;
     settlementDate?: Timestamp;
-    conditions: {
-      [key: string]: Condition
-    };
-
+    conditionChips: ConditionChip[];
 
     // everything below not currently used
     vendor: string;

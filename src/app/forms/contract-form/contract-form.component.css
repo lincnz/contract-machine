@@ -7,15 +7,34 @@
 }
 
 .linked-fields {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1em;
-  padding: 1em; 
-  border: 0.03em solid rgb(189, 189, 189);
-  border-radius: 0.5em;
+  padding-top: 1em;
 }
-
+/* 
 .agreement-name {
   width: 20em;;
+} */
+  
+.mat-mdc-dialog-content {
+  max-height: 100%;
 }
   
+.mat-mdc-tab-body-content {
+  overflow: visible;
+}
+
+.mat-mdc-tab-body-content {
+  overflow: visible;
+}
+
+.mat-mdc-tab-body-active {
+  overflow-y: visible;
+}
+
+.mat-mdc-tab-body.mat-mdc-tab-body-active {
+  overflow-x: visible;
+  overflow-y: visible;
+}
+

@@ -1,3 +1,4 @@
-<mat-form-field c>
-<input type="tel" matInput placeholder="Search">
+<mat-form-field c class="search-box">
+  <input #search type="text" id="contractSearch" matInput placeholder="Search Contracts" (keyup)="onSearchText(search.value)" >
 </mat-form-field>
+

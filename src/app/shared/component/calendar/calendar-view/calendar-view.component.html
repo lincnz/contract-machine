@@ -1,0 +1,54 @@
+<div class="calender-container">
+  <mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+  </mwl-demo-utils-calendar-header>
+  
+  <ng-template #loading>
+    <div class="text-center">
+      <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
+      Loading events...
+    </div>
+  </ng-template>
+
+  <div *ngIf="asyncEvents$ | async; let events else loading">
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [activeDayIsOpen]="activeDayIsOpen"
+        [events]="events"
+        (eventClicked)="eventClicked($event)"
+        (dayClicked)="dayClicked($event.day)"
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventClicked)="eventClicked($event)"
+      >
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventClicked)="eventClicked($event)"
+      >
+      </mwl-calendar-day-view>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <button mat-button>Test</button>
+  <mat-card
+    cdkDropList
+    id="mycontracts"
+    class="list contract-container"
+    #mycontractsList="cdkDropList"
+    [cdkDropListData]="myContractsFiltered | async"
+    [cdkDropListConnectedTo]="[]"
+    >
+    <app-task *ngFor="let contract of myContractsFiltered | async "  [contract]="contract" [compactView]="true"></app-task>
+    <p class="empty-label" *ngIf="((myContractsFiltered | async)?.length === 0)">Empty list</p>
+  </mat-card>
+</div> -->

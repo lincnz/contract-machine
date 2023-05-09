@@ -1,5 +1,4 @@
 <div class="general-view-page">
-  <div class="settlements">
     <div class="thisweek">
       <h2>Settlements this week:</h2>
       <div class="contract-cards">
@@ -15,9 +14,7 @@
         <p class="empty-label" *ngIf="((mycontractsByMonth | async)?.length === 0)">No settlements this month</p>
       </div>
     </div>
-  </div>
   
-  <div class="conditions">
     <div class="thisweek">
       <h2>Conditions this week:</h2>    
       <div class="contract-cards">
@@ -33,11 +30,8 @@
         <p class="empty-label">No conditions this month</p>
       </div>
     </div>
-  </div>
 </div>
 
-
-<button mat-button (click)="testFunction()">Click to test a function</button>
   
   
   

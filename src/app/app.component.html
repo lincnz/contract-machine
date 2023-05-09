@@ -12,7 +12,7 @@
 </mat-toolbar>
 
 <div class="content-wrapper">
-  <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel" *ngIf="authService.userData as user">
+  <nav mat-tab-nav-bar animationDuration="0ms" [backgroundColor]="background" [tabPanel]="tabPanel" *ngIf="authService.userData as user">
     <a 
       mat-tab-link 
       *ngFor="let link of navLinks"
@@ -22,7 +22,7 @@
     >{{link.label}}</a>
   </nav>
 
-  <mat-tab-nav-panel #tabPanel class="current-tab">
+  <mat-tab-nav-panel animationDuration="0ms" #tabPanel class="current-tab">
     <router-outlet></router-outlet>
   </mat-tab-nav-panel>
 </div> 

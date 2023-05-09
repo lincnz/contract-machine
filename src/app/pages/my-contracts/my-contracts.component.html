@@ -13,7 +13,8 @@
 <div class="container-wrapper container" *ngIf="authService.userData as user">
   <!-- <div class="contract-container"> -->
     <!-- <h2>Tracked Contracts</h2> -->
-    <app-search-bar></app-search-bar>
+    <app-search-bar (typeSearch)="updateSearchText($event)"></app-search-bar>
+    
     <mat-card
       cdkDropList
       id="mycontracts"
@@ -23,56 +24,14 @@
       [cdkDropListConnectedTo]="[]"
       (cdkDropListDropped)="drop($event)"
     >
-      <p class="empty-label" *ngIf="((mycontracts | async)?.length === 0)">Empty list</p>
-      <app-task cdkDrag (edit)="editTask('mycontracts', $event)" *ngFor="let contract of mycontracts | async"  [contract]="contract" [compactView]="true"></app-task>
+      <p class="empty-label" *ngIf="((mycontracts | async)?.length === 0)">No contracts</p>
+      <app-task cdkDrag (edit)="editTask('mycontracts', $event)" *ngFor="let contract of (mycontracts | async | searchpipe: searchText  )"  [contract]="contract" [compactView]="true"></app-task>
       <button (click)="newTask()" mat-button>
         <mat-icon>add</mat-icon>
+        New Contract
       </button> 
     </mat-card>
+
   <!-- </div> -->
-
-  <!-- <div class="contract-container">
-    <h2>Untracked Contracts</h2>
-    <mat-card
-      cdkDropList
-      id="myothercontracts"
-      class="list"
-      #myothercontractsList="cdkDropList"
-      [cdkDropListData]="myothercontracts | async"
-      [cdkDropListConnectedTo]="[mycontractsList]"
-      (cdkDropListDropped)="drop($event)"
-    >
-      <p class="empty-label" *ngIf="(myothercontracts | async)?.length === 0">Empty list</p>
-      <app-task cdkDrag (edit)="editTask('myothercontracts', $event)" *ngFor="let contract of myothercontracts | async"  [contract]="contract"></app-task>
-    </mat-card>
-  </div>
-
-  <div class="container contract-container">
-    <h2>Other</h2>
-  </div> --> 
 </div>
 
-<!-- <button (click)="newTestObservable()" mat-button>
-    Test Observable
-</button>  -->
-
-<!-- <mat-card></mat-card> -->
-
- <!-- <div class="blackline"></div>****************************************************************************************************** -->
-
-<!-- <div class="container" *ngIf="authService.userData as user">
-  <div class="container-wrapper container">
-    <div class="contract-container">
-      <h2>Test List</h2>
-      <mat-card
-        cdkDropList
-        id="testcontracts"
-        class="list"
-        #testcontractsList="cdkDropList"
-        [cdkDropListData]="myothercontracts | async"
-      >
-        <app-task *ngFor="let contract of myothercontracts | async" [contract]="contract" [compactView]="false"></app-task>
-      </mat-card>
-    </div>
-  </div>
-</div> -->

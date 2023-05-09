@@ -1,0 +1,13 @@
+.conditions-chips {
+  width: 100%;
+}
+
+.container {
+  padding: 1em;
+}
+
+.dialog-flex {
+  display: flex;
+  flex-direction: column;
+}
+

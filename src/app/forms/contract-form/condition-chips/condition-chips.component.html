@@ -1,0 +1,26 @@
+<mat-form-field appearance="fill" class="conditions-chips">
+    <mat-label>Conditions</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter conditions">
+      <mat-chip-row 
+        *ngFor="let condition of conditions"  
+        (removed)="remove(condition)"
+         [editable]='false'>
+        {{condition.name}} - {{condition.date}}
+        <button matChipRemove [attr.aria-label]="'remove ' + condition.name">
+           <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      <input placeholder="New condition..."
+           [matChipInputFor]="chipGrid"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)"/>
+    </mat-chip-grid>
+    <!-- Unused Autocomplete -->
+    <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let standardCondition of standardConditions | async" [value]="standardCondition">
+        {{standardCondition}}
+      </mat-option>
+    </mat-autocomplete> -->
+</mat-form-field>
+<button mat-button (click)="conditionDialog()">Add New Condition</button>

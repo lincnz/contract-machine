@@ -10,13 +10,14 @@ import { MyContractsComponent } from './pages/my-contracts/my-contracts.componen
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { GeneralViewComponent } from './pages/general-view/general-view.component';
-// wizard pages
+import { CalendarMonthViewComponent } from 'angular-calendar';
 
 const routes: Routes = [
   { path: '', redirectTo: '/general-view', pathMatch: 'full' },
   { path: 'general-view', component: GeneralViewComponent, canActivate: [AuthGuard] },
   { path: 'my-contracts', component: MyContractsComponent, canActivate: [AuthGuard] },
-  { path: 'calendar', component: CalendarComponent },
+  { path: 'calendar', component: CalendarComponent},
+  { path: 'calendar', component: CalendarMonthViewComponent, outlet: 'secondary'},
   { path: 'settings', component: SettingsComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },

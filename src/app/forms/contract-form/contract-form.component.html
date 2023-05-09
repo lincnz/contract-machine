@@ -1,8 +1,6 @@
-<!-- TODO: collapse this into key dates only.  -->
-
 <mat-dialog-content>
   <mat-tab-group>
-    <mat-tab label="Details">
+    <mat-tab label="Contract Details">
       <div class="linked-fields">
         <!-- title -->
         <mat-form-field class="agreement-name">
@@ -18,29 +16,32 @@
 
         <!-- startDate -->
         <mat-form-field appearance="fill">
-          <mat-label>Date of Agreement</mat-label>
-          <input matInput 
+            <mat-label>
+              Date of Agreement
+            </mat-label>
+          <input matInput
             [matDatepicker]="startDatePicker" 
-            [(ngModel)]="data.contract.startDate"
+            [(ngModel)]="data.contract.startDate" 
+            placeholder="{{ this.contract?.startDate }}"
           >
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #startDatePicker></mat-datepicker>
+          <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
         </mat-form-field>
 
         <!-- settlement date -->
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Settlement Date</mat-label>
-            <input matInput 
-              [matDatepicker]="settlementDatePicker" 
-              [(ngModel)]="data.contract.settlementDate" 
-            >
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="settlementDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #settlementDatePicker></mat-datepicker>
-          </mat-form-field>
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>
+            Settlement Date
+          </mat-label>
+          <input matInput 
+            [matDatepicker]="settlementDatePicker" 
+            [(ngModel)]="data.contract.settlementDate" 
+          > 
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="settlementDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #settlementDatePicker disabled="false"></mat-datepicker>
+        </mat-form-field>
 
         <!-- vendor -->
         <mat-form-field>
@@ -55,20 +56,19 @@
         </mat-form-field>
 
         <!-- Conditions -->
-        <button (click)="newCondition()" mat-button>
+        <!-- <button (click)="newCondition()" mat-button>
           <mat-icon>add</mat-icon>
         </button> 
+        <app-condition-form [item]="currentItem" (newItemEvent)="addItem($event)"></app-condition-form>
+        <ul>
+          <li *ngFor="let item of items">{{item}}</li>
+        </ul> -->
         
       </div>
-    </mat-tab>
-    <mat-tab label="Conditions">
-
+      <app-condition-chips (newChipEvent)="updateConditions($event)" [conditions]="this.data.contract.conditionChips!"></app-condition-chips>
     </mat-tab>
   </mat-tab-group>
 </mat-dialog-content>
-
-<div class="form-container">
-</div>  
 
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="{ contract: data.contract }">OK</button>

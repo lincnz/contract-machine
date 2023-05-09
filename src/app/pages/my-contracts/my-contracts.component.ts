@@ -1,37 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Contract } from '../../shared/component/contract/contract';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ContractFormComponent, ContractFormResult} from '../../forms//contract-form/contract-form.component';
 import { MatDialog as MatDialog } from '@angular/material/dialog';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from "@angular/router"
-import { TestformComponent, TestFormResult } from 'src/app/tests/testform/testform.component';
-
-const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
-  const subject = new BehaviorSubject<Contract[]>([]);
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Contract[]) => {
-    subject.next(val);
-  });
-  return subject;
-};
+import { GetObservableService } from 'src/app/shared/service/get-observable/get-observable.service'
 
 @Component({
   selector: 'app-task-view',
   templateUrl: './my-contracts.component.html',
-  styleUrls: ['./my-contracts.component.css']
+  styleUrls: ['./my-contracts.component.css'],
+  providers: [GetObservableService]
 })
+
 export class MyContractsComponent {
+
+  userData: any;
+  filePath = `users/${this.authService.userData.uid}/mycontracts`
+  userFolder = `users/${this.authService.userData.uid}`
+  searchText: string = "";
+
   constructor(
     private dialog: MatDialog, 
     private store: AngularFirestore,
     private router: Router,
     public authService: AuthService,
-    public afs: AngularFirestore,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private getObservable: GetObservableService,
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -45,31 +44,13 @@ export class MyContractsComponent {
     });
   }
 
-  userData: any;
-  userStatus = this.afAuth.authState.subscribe(res => {
-    if (res && res.uid) {
-      return true
-    }
-    else {
-      return false
-    }
-  });
-
-  userFolder = `users/${this.authService.userData.uid}/`
-  mycontracts = getObservable(this.store.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;
-  myothercontracts = getObservable(this.store.collection(this.userFolder + 'myothercontracts')) as Observable<Contract[]>;
-
-  //tests
-  //mytest = getTestSimple();
-  gotTheContracts = this.store.doc(this.userFolder + 'test/testdoc')    
-  //doc(this.userFolder + 'test/Bqp6MlAxuHMAHkkg2q8g');
-  //consoleIt = console.log(this.gotTheContracts)
-  //endtests
+  mycontracts = this.getObservable.getObservable(this.store.collection(this.filePath)) as Observable<Contract[]>;
+  myothercontracts = this.getObservable.getObservable(this.store.collection(this.filePath)) as Observable<Contract[]>; //Not currently used but provides a second collection of contracts
 
   newTask(): void {
     let currentdate = new Date;
       
-    let getcolor = ( ) => {
+    let getPastelColor = ( ) => {
       let randomRGBValue = () => { return Math.floor(Math.random() * 255) }
       let randomAlphaValue = () => { return Math.floor(Math.random()*0.2) + 0.3 }
       return "rgb(" + randomRGBValue() + ", " + randomRGBValue() + ", " +  randomRGBValue() + ", " + randomAlphaValue() + ")";
@@ -80,8 +61,9 @@ export class MyContractsComponent {
       data: {
         contract: {
           timeZoneOffset: currentdate.getTimezoneOffset(), //suggest implementing warning if timezone is detected to be < UTC+12. Careful as due to daylight savings, may sometimes be UTC+11/13 //however at present all dates entered in NZ default to NZ time
-          color: getcolor(),
-          stdConditionDates: {}
+          color: getPastelColor(),
+          conditions: [],
+          conditionChips: []
         },
       },
     });
@@ -90,26 +72,9 @@ export class MyContractsComponent {
         if (!result) {
           return;
         }
-        this.store.collection(this.userFolder + 'mycontracts').add(result.contract)
+        this.store.collection(this.filePath).add(result.contract)
     });
   }
-
-  //tests
-  newTestObservable(): void {
-    console.log("test observable initiated");
-    let testObj = {one: "Hare"}
-    this.store.collection(this.userFolder + 'test2').add(testObj)
-    // const dialogRefTest = this.dialog.open(TestformComponent, {
-    //   width: '100%',
-    //   data: {
-    //     string: {}
-    //   }
-    // })
-    // dialogRefTest.afterClosed().subscribe((testData: TestFormResult) => {
-    //   this.store.collection(this.userFolder + 'test').add(testData)
-    // })
-  }
-  //endtests
 
   editTask(list: 'mycontracts' | 'myothercontracts', contract: Contract): void {
     const dialogRef = this.dialog.open(ContractFormComponent, {
@@ -126,13 +91,14 @@ export class MyContractsComponent {
       const dataList = this[list];
 
       if (result.delete) {
-        this.store.collection(this.userFolder + list).doc(contract.id).delete();
+        this.store.collection(this.filePath).doc(contract.id).delete();
       } else {
-        this.store.collection(this.userFolder + list).doc(contract.id).update(contract);
+        this.store.collection(this.filePath).doc(contract.id).update(contract);
       }
     });
   }
 
+  //not currently used
   drop(event: CdkDragDrop<Contract[] | null>): void {
       if (event.previousContainer === event.container) {
         return;
@@ -154,5 +120,9 @@ export class MyContractsComponent {
         event.previousIndex,
         event.currentIndex
       );
+  }
+
+  updateSearchText(searchText: string) {
+    this.searchText = searchText;
   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShortFormComponent } from './short-form.component';
+import { ConditionChipsComponent } from './condition-chips.component';
 
-describe('ShortFormComponent', () => {
-  let component: ShortFormComponent;
-  let fixture: ComponentFixture<ShortFormComponent>;
+describe('ConditionChipsComponent', () => {
+  let component: ConditionChipsComponent;
+  let fixture: ComponentFixture<ConditionChipsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShortFormComponent ]
+      declarations: [ ConditionChipsComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ShortFormComponent);
+    fixture = TestBed.createComponent(ConditionChipsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

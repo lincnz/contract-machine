@@ -5,14 +5,15 @@ import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GetObservableService } from 'src/app/shared/service/get-observable/get-observable.service';
 
-const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
-  const subject = new BehaviorSubject<Contract[]>(new Array);
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Contract[]) => {
-    subject.next(val);
-  });
-  return subject;
-};
+// const getObservable = (collection: AngularFirestoreCollection<Contract>) => {
+//   const subject = new BehaviorSubject<Contract[]>(new Array);
+//   collection.valueChanges({ idField: 'id' }).subscribe((val: Contract[]) => {
+//     subject.next(val);
+//   });
+//   return subject;
+// };
 
 const getObservableByWeek = (collection: AngularFirestoreCollection<Contract>) => {
   const subject = new BehaviorSubject<Contract[]>([]);
@@ -57,11 +58,11 @@ const getObservableByMonth = (collection: AngularFirestoreCollection<Contract>) 
   return subject;
 };
 
-                                           
 @Component({
   selector: 'app-general-view',
   templateUrl: './general-view.component.html',
-  styleUrls: ['./general-view.component.css']
+  styleUrls: ['./general-view.component.css'],
+  providers: [GetObservableService]
 })
 export class GeneralViewComponent implements OnInit {
 
@@ -70,6 +71,7 @@ export class GeneralViewComponent implements OnInit {
     public authService: AuthService,
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
+    private getObservable: GetObservableService
   ) { 
 
     this.afAuth.authState.subscribe((user) => {
@@ -84,16 +86,13 @@ export class GeneralViewComponent implements OnInit {
     });
   }
   
-  testFunction(): void {
-    console.log('function ran');
-  }
-
   userFolder = `users/${this.authService.userData.uid}/`
+  filepath = `users/${this.authService.userData.uid}/mycontracts`
 
-  //'as' is a type assertion
-  mycontracts = getObservable(this.angularfirestore.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>
-  mycontractsByMonth = getObservableByMonth(this.angularfirestore.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;
-  mycontractsByWeek = getObservableByWeek(this.angularfirestore.collection(this.userFolder + 'mycontracts')) as Observable<Contract[]>;
+  mycontracts = this.getObservable.getObservable(this.angularfirestore.collection(this.filepath)) as Observable<Contract[]>
+  //TODO: these could probably be rewritten:
+  mycontractsByMonth = getObservableByMonth(this.angularfirestore.collection(this.filepath)) as Observable<Contract[]>;
+  mycontractsByWeek = getObservableByWeek(this.angularfirestore.collection(this.filepath)) as Observable<Contract[]>;
   
   ngOnInit(): void {
 

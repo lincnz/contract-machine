@@ -20,6 +20,7 @@ export class ContractComponent {
 
   ) { }
 
+  
   getprogress (contract: Contract) {
     let progress!: number;
     let today = new Date;
@@ -28,10 +29,6 @@ export class ContractComponent {
         progress = Math.round(((todaySeconds - contract.startDate.seconds)/(contract.settlementDate.seconds - contract.startDate.seconds))*100);
       }
     return progress
-  }
-
-  testFunc() {
-    console.log("testfunc Ran")
   }
 
   ngOnInit() : void {

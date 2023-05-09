@@ -7,17 +7,26 @@
 
   <!-- Settlement week view -->
   <!-- TODO: all date stuff should be collapsed onto calendar display -->
+  
   <div *ngIf="settView">
     <h2>{{ contract.title }}</h2>
-    <div class="pills">
+    <!-- <div class="pills">
       <p class="conditionality" *ngIf="(contract.conditional)">Conditional</p><p *ngIf="!(contract.conditional)">Unconditional</p>
-    </div>
+    </div> -->
   </div>
 
   <!-- Compact view -->
   <div *ngIf="compactView" >
     <h2>{{ contract.title }} - {{ contract.clientref }}</h2>
     <!-- TODO: should show, conditionality, condition dates, settlement dates only.  -->
+    <p *ngIf="contract.startDate">Agreement Date: {{ contract.startDate.seconds * 1000 | date:'mediumDate' }}</p>
+    <p *ngIf="contract.settlementDate">Settlement: {{ contract.settlementDate.seconds * 1000 | date:'mediumDate' }}</p>
+    <mat-chip-listbox>
+      <mat-chip-row 
+        *ngFor="let condition of this.contract.conditionChips">
+        {{condition.name}}
+      </mat-chip-row>
+    </mat-chip-listbox>
   </div>
 
   <!-- Expanded view -->
@@ -28,13 +37,12 @@
       <p class="conditionality" *ngIf="(contract.conditional)">Conditional</p><p *ngIf="!(contract.conditional)">Unconditional</p>
     </div>
     <p *ngIf="(contract.conditional) === true">Conditional</p><p *ngIf="!(contract.conditional)">Unconditional</p>
-    <p *ngIf="contract.startDate">Agreeement Date: {{ contract.startDate.seconds * 1000 | date:'dd/MM/yyyy' }}</p>
+    <p *ngIf="contract.startDate">Agreement Date: {{ contract.startDate.seconds * 1000 | date:'dd/MM/yyyy' }}</p>
     <p *ngIf="contract.settlementDate">Settlement: {{ contract.settlementDate.seconds * 1000 | date:'mediumDate' }}</p>
     <p *ngIf="!(contract.timeZoneOffset === undefined)">Time Zone Offset: {{ -(contract.timeZoneOffset/60) }}</p>
     <button mat-button (click)="edit.emit(contract)">
       <mat-icon>edit</mat-icon>
     </button>
-    <button (click)="testFunc()">Test</button>
   </div>
 
   <!-- TODO: keep progress bar, but maybe apply to conditions too? -->

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Select condition date</h1>
+<div mat-dialog-content class="dialog-flex">
+  <mat-form-field appearance="fill">
+    <mat-label>Condition name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Condition date</mat-label>
+    <input matInput [(ngModel)]="data.date">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add Condition</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

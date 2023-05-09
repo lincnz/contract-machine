@@ -5,21 +5,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-const getSettlements = (collection: AngularFirestoreCollection<Contract>) => {
-  const subject = new BehaviorSubject<Contract[]>([]);
-  let settlementDates: Date[] = [];
-  collection.valueChanges({ idField: 'id' }).subscribe((val: Contract[]) => {
-    for (const contract of val) {
-      if (contract.settlementDate && (contract.settlementDate.seconds != undefined)) {
-          let newDate = new Date(contract.settlementDate.seconds*1000);
-          settlementDates.push(newDate)
-      }
-    }
-    //subject.next(settlementDates);
-  });
-  return settlementDates;
-};
-
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -28,7 +13,6 @@ const getSettlements = (collection: AngularFirestoreCollection<Contract>) => {
 
 export class CalendarComponent implements OnInit {
 
-  selected = new Date("2023-04-07") ; //test
   userFolder = `users/${this.authService.userData.uid}/`;
 
   constructor(
@@ -52,10 +36,6 @@ export class CalendarComponent implements OnInit {
 
   userData: any;
   
-  testFunc() {
-    console.log(this.selected)
-  }
-
   ngOnInit(): void { 
   }
 

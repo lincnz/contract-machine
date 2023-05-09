@@ -1,11 +1,18 @@
 <p>condition-form works!</p>
 
-<!-- <mat-form-field class="agreement-name">
+<mat-form-field class="agreement-name">
   <mat-label>Condition Type:</mat-label>
-  <input matInput cdkFocusInitial >
+  <input matInput cdkFocusInitial> <!-- [(ngModel)]="data.contract.conditions" -->
 </mat-form-field>
 
-<mat-form-field appearance="fill">
+<!-- a test -->
+<p>Today's item: {{item}}</p>
+
+<label for="item-input">Condition type</label>
+<input type="text" id="item-input" #newItem>
+<button mat-button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+
+<!-- <mat-form-field appearance="fill">
   <mat-label>Condition Date</mat-label>
   <input matInput 
     [matDatepicker]="conditionDatePicker" 

@@ -23,4 +23,10 @@
    overflow: hidden;
    flex-wrap: wrap;
 }
+.mat-mdc-dialog-content {
+  max-height: 100%;
+}
   
+.mat-mdc-tab-body-content {
+  overflow: visible;
+}
